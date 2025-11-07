@@ -1,4 +1,4 @@
-package br.com.clauviver.anamnese
+package com.example.clauviver_anamnese
 
 import io.flutter.embedding.android.FlutterActivity
 
