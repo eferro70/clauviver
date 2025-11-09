@@ -1,3 +1,4 @@
+//android/build.gradle.kts
 allprojects {
     repositories {
         google()
@@ -28,5 +29,3 @@ plugins {
     id("org.jetbrains.kotlin.android") version "2.1.0" apply false
     id("com.google.gms.google-services") version "4.4.2" apply false
 }
-
-apply(plugin = "com.google.gms.google-services")
