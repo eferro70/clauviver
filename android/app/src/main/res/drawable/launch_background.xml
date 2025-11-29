@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- android/app/src/main/res/drawable/launch_background.xml -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Cor de fundo do splash -->
+    <!-- 1. Cor de fundo sólida -->
     <item android:drawable="@android:color/white" />
 
-    <!-- Imagem central (mantém proporção, sem distorção) -->
+    <!-- 2. Sua imagem -->
     <item>
         <bitmap
             android:gravity="center"
-            android:tileMode="disabled"
-            android:src="@drawable/splash512"
-            android:antialias="true" />
+            android:src="@drawable/splash_512" />
     </item>
 </layer-list>
-

@@ -1,11 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // ← necessário para offline persistence
 import 'package:flutter/material.dart';
-import 'tela_anamnese.dart';
-import 'tela_lista_anamneses.dart';
+// Substitua os imports antigos:
+// import 'tela_anamnese.dart';
+// import 'tela_lista_anamneses.dart';
+import 'screens/anamnese/anamnese_stepper_screen.dart'; // ← novo formulário
+import 'tela_lista_anamneses.dart'; // ← mantém (precisará ser atualizada depois para suportar edição)
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  // ✅ Ativa persistência offline do Firestore (essencial para seu app offline)
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+    cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+  );
+
   runApp(const MyApp());
 }
 
@@ -37,7 +48,9 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const TelaAnamnese()),
+                MaterialPageRoute(
+                  builder: (context) => const AnamneseStepperScreen(), // ← usa a nova tela
+                ),
               ),
               child: const Text('🔍 Nova Anamnese'),
             ),
@@ -45,7 +58,9 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const TelaListaAnamneses()),
+                MaterialPageRoute(
+                  builder: (context) => const TelaListaAnamneses(),
+                ),
               ),
               child: const Text('📋 Ver Anamneses Salvas'),
             ),
